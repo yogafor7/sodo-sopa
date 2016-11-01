@@ -1,0 +1,52 @@
+{
+  "name": "raspicam-live",
+  "version": "1.0.0",
+  "description": "It's a live streaming webcam built around Raspberry, Node.js, Socket.io and React.",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -r -f web/dist/*",
+    "build:bundle": "npm run clean && webpack",
+    "start": "node server/server",
+    "start:watch": "parallelshell 'npm run watch:bundle' 'npm run watch:server'",
+    "watch:bundle": "webpack-dev-server -c --inline",
+    "watch:server": "NODE_ENV=dev nodemon -w server/",
+    "prerelease": "npm run build:bundle && git commit -a -m release",
+    "release": "git push heroku master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wuct/raspicam-live.git"
+  },
+  "keywords": [
+    "raspberry",
+    "node",
+    "socketio",
+    "react"
+  ],
+  "author": "wuct",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wuct/raspicam-live/issues"
+  },
+  "homepage": "https://github.com/wuct/raspicam-live",
+  "engines": {
+    "node": "0.10.x",
+    "npm": "2.2.x"
+  },
+  "dependencies": {
+    "ejs": "^2.2.1",
+    "express": "^4.11.0",
+    "lodash.findindex": "^2.4.1",
+    "raspicam": "^0.2.13",
+    "react": "^0.12.2",
+    "socket.io": "^1.2.1",
+    "socket.io-client": "^1.2.1"
+  },
+  "devDependencies": {
+    "jsx-loader": "^0.12.2",
+    "nodemon": "^1.3.2",
+    "parallelshell": "^1.0.3",
+    "webpack": "^1.5.1"
+  }
+}
